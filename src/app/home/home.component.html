@@ -1,0 +1,9 @@
+<h1>Home</h1>
+<div class="row">
+    <div class="col d-flex flex-wrap">
+        <div routerLink="/dettaglio-elenco" class="w-25 px-2" *ngFor="let elemento of drinks">
+            <img class="img-fluid" src="{{elemento.strDrinkThumb}}" alt="">
+            <p class="w-100 text-center">{{elemento.strDrink}}</p>
+        </div>
+    </div>
+</div>
