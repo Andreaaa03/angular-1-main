@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
     templateUrl: "./home.component.html",
 })
 export class HomeComponent implements OnInit {
-    drinks: any = [];
+    drinks: Array<singleDrink> = [];
     constructor(private http: HttpClient) {}
 
     ngOnInit() {
-        this.http.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a").subscribe((dati: any) => {
+        this.http.get<allDrinks>("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a").subscribe((dati) => {
             this.drinks = dati.drinks;
         });
     }

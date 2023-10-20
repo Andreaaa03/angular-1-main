@@ -1,7 +1,7 @@
 <h1>Dettaglio</h1>
 <div class="row">
     <div class="col col-4">
-        <img class="img-fluid" src="{{drink.strDrinkThumb}}" alt="">
+        <img class="img-fluid" [src]="drink.strDrinkThumb" alt="">
     </div>
     <div class="col col-12 d-flex" *ngFor="let obj of personal">
         <div class="w-25">
