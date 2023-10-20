@@ -3,22 +3,10 @@
     <div class="col col-4">
         <img class="img-fluid" src="{{drink.strDrinkThumb}}" alt="">
     </div>
-    <div class="col col-8 d-flex">
+    <div class="col col-12 d-flex" *ngFor="let obj of personal">
         <div class="w-25">
-            <img src="https://picsum.photos/100/100" alt="">
-            <p>{{drink.strIngredient1}}</p>
-        </div>
-        <div class="w-25">
-            <img src="https://picsum.photos/100/100" alt="">
-            <p>{{drink.strIngredient2}}</p>
-        </div>
-        <div class="w-25">
-            <img src="https://picsum.photos/100/100" alt="">
-            <p>{{drink.strIngredient3}}</p>
-        </div>
-        <div class="w-25">
-            <img src="https://picsum.photos/100/100" alt="">
-            <p>{{drink.strIngredient4}}</p>
+            <p>{{obj.ingrediente}}</p>
+            <p>{{obj.misura}}</p>
         </div>
     </div>
 </div>
