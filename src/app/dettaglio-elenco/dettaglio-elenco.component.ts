@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 
 @Component({
     selector: "dettaglio-elenco",
@@ -57,7 +59,7 @@ export class DettaglioElenco implements OnInit {
         strImageSource: null,
         strImageAttribution: null,
         strCreativeCommonsConfirmed: null,
-        dateModified: ""
+        dateModified: "",
     };
     ingredients: Array<allIngredient> = [];
     measure: Array<allMeasure> = [];
@@ -78,7 +80,7 @@ export class DettaglioElenco implements OnInit {
                 strIngredient12: null,
                 strIngredient13: null,
                 strIngredient14: null,
-                strIngredient15: null
+                strIngredient15: null,
             },
             misura: {
                 strMeasure1: null,
@@ -100,35 +102,45 @@ export class DettaglioElenco implements OnInit {
             },
         },
     ];
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private router: Router, private location: Location) {}
+
+    tornaIndietro() {
+        this.location.back();
+    }
+
+    idDrink: string | undefined = undefined;
 
     ngOnInit() {
-        this.http.get<allDrinks>("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=15200").subscribe((response) => {
-            this.drink = response.drinks[0];
-            let i: number = 1;
-            while ((this.drink as any)["strIngredient" + i] !== null) {
-                const ingrediente = (this.drink as any)["strIngredient" + i];
-                const misura = (this.drink as any)["strMeasure" + i];
+        const parts: string[] | undefined = window.location.href.split("/");
+        this.idDrink = parts.pop();
+        const apiRequest = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + this.idDrink;
+        console.log(this.idDrink);
 
-                if (ingrediente) {
-                    this.ingredients.push(ingrediente);
+        this.http.get<allDrinks>(apiRequest).subscribe((response) => {
+            if (response) {
+                this.drink = response.drinks[0];
+                let i: number = 1;
+                while ((this.drink as any)["strIngredient" + i] !== null) {
+                    const ingrediente = (this.drink as any)["strIngredient" + i];
+                    const misura = (this.drink as any)["strMeasure" + i];
 
-                    if (misura) {
-                        this.measure.push(misura);
+                    if (ingrediente) {
+                        this.ingredients.push(ingrediente);
+                        if (misura) {
+                            this.measure.push(misura);
+                        }
+                        this.personal.push({ ingrediente, misura });
                     }
 
-                    this.personal.push({ ingrediente, misura });
+                    i++;
                 }
+                this.personal.shift();
 
-                i++;
+                console.log(this.drink);
+                if((typeof this.personal[3].ingrediente) === undefined){
+                    console.log(this.personal[3].ingrediente);
+                }
             }
-            this.personal.shift();
-
-
-            console.log(this.drink);
-            // if((typeof this.personal[3].ingrediente) === undefined){
-            //     console.log(this.personal[3].ingrediente);
-            // }
         });
     }
 }

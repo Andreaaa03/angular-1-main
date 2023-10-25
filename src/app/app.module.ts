@@ -7,22 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app.routing.module';
 import { DettaglioElenco } from './dettaglio-elenco/dettaglio-elenco.component';
+import { ElencoLettera } from './elenco-lettera/elenco-lettera.component';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    DettaglioElenco,
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+    imports: [BrowserModule, HttpClientModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
+    declarations: [AppComponent, HomeComponent, DettaglioElenco, ElencoLettera],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

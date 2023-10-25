@@ -54,7 +54,7 @@ type singleDrink = {
 
 type allDrinks = {
     drinks: Array<singleDrink>;
-};
+} | null;
 
 type allIngredient = {
     strIngredient1: string | null;
@@ -93,9 +93,9 @@ type allMeasure = {
     strImageSource: string | null;
 };
 
-type typePersonal = [
+type typePersonal = 
     {
         ingrediente: allIngredient;
         misura: allMeasure;
-    }
-];
+    }[]
+;
