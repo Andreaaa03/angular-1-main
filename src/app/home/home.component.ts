@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { forkJoin } from "rxjs";
+import { DrinkService } from "../../_services/drink.service";
 
 @Component({
     selector: "app-home",
@@ -10,43 +9,47 @@ export class HomeComponent implements OnInit {
     drinksA: Array<singleDrink> = [];
     drinksBZ: Array<singleDrink> = [];
 
-    constructor(private http: HttpClient) {}
+    constructor(private drinkService: DrinkService) {}
     call: string = "";
 
     caricaDiPiu: boolean = false;
-    letters:Array<string> = [];
-
-    firstLetter = (letter: string) => {
-        return `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`;
-    };
-
-    async ngOnInit() {
+    letters: Array<string> = [];
+    ngOnInit() {
         for (let i = 97; i <= 122; i++) {
             const letter = String.fromCharCode(i);
             this.letters.push(letter);
         }
-
+        let lettera_scelta = this.randomLetter();
         for (const letter of this.letters) {
-            const response = await this.http.get<allDrinks>(this.firstLetter(letter)).toPromise();
-            if (response !== undefined && response) {
-                if (letter === "a") {
-                    this.drinksA = response.drinks;
-                } else {
-                    this.drinksBZ = this.drinksBZ.concat(response.drinks);
+            this.drinkService.getElencoDrinks(letter).subscribe((response) => {
+                if (response !== null) {
+                    console.log(lettera_scelta);
+
+                    if (letter === lettera_scelta) {
+                        if (response.drinks !== null) this.drinksA = response.drinks;
+                    } else {
+                        if (response.drinks !== null) this.drinksBZ = this.drinksBZ.concat(response.drinks);
+                    }
                 }
-            }
+            });
         }
     }
 
+    randomLetter = () => {
+        let ris;
+        do {
+            ris = String.fromCharCode(Math.floor(Math.random() * (122 - 97 + 1) + 97));
+        } while (ris === "u" || ris === "x");
+        return ris;
+    };
     cambio = () => {
         this.caricaDiPiu = !this.caricaDiPiu;
-        let div=document.getElementById("drinksA");
-        if(div){
-            if(this.caricaDiPiu){
+        let div = document.getElementById("drinksA");
+        if (div) {
+            if (this.caricaDiPiu) {
                 div.classList.add("lungo");
                 div.classList.remove("corto");
-            }
-            else{
+            } else {
                 div.classList.remove("lungo");
                 div.classList.add("corto");
             }
@@ -54,26 +57,3 @@ export class HomeComponent implements OnInit {
         console.log("cambio");
     };
 }
-
-//     ngOnInit() {
-//         const requests = [];
-//         this.http.get<allDrinks>(this.firstLetter()).subscribe((response) => {
-//             this.drinksA = response.drinks;
-//         });
-
-//         for (let i = 98; i <= 122; i++) {
-//             const letter = String.fromCharCode(i);
-//             this.call = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`;
-//         }
-//         requests.push(this.http.get<allDrinks>(this.allLetter()));
-//         forkJoin(requests).subscribe((results) => {
-//             // results è un array contenente i risultati di tutte le chiamate
-//             // Concateniamo i risultati di ciascuna chiamata in un unico array
-//             this.drinksBZ = results.reduce((acc: singleDrink[], result) => acc.concat(result.drinks), []);
-//         });
-
-//         // .subscribe((response) => {this.drinksBZ = response.drinks;})
-//     }
-
-//     // this.allLetter();
-// }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { DrinkService } from "../../_services/drink.service";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -7,31 +7,26 @@ import { ActivatedRoute } from "@angular/router";
     templateUrl: "./elenco-lettera.component.html",
 })
 export class ElencoLettera implements OnInit {
-    drinks: Array<singleDrink> = [];
+    drinks: singleDrink[] = [];
 
-    constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {}
+    constructor(private activatedRoute: ActivatedRoute, private drinkService: DrinkService) {}
 
-    lettera: string | undefined = undefined;
+    lettera_scelta: string = "";
     letters: Array<string> = [];
-    
+
+    esiste:boolean=true;
+
     ngOnInit() {
-        console.log("oninit");
-        // const parts: string[] | undefined = window.location.href.split("/");
-        // this.lettera = parts.pop();
-        // this.activatedRoute.snapshot.params['lettera']; non gestisce le callback
         for (let i = 97; i <= 122; i++) {
             const letter = String.fromCharCode(i);
             this.letters.push(letter);
         }
-        console.log(this.letters);
 
         this.activatedRoute.params.subscribe((params) => {
-            this.lettera = params["lettera"];
-            console.log(this.lettera);
-            const apiRequestLetter = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=" + this.lettera;
-            const call = apiRequestLetter;
-            this.http.get<allDrinks>(call).subscribe((dati) => {
-                if (dati) this.drinks = dati.drinks;
+            this.lettera_scelta = params["lettera"];
+            this.drinkService.getElencoDrinks(this.lettera_scelta).subscribe((dati) => {
+                if (dati && dati.drinks !== null) this.drinks = dati.drinks;
+                else this.esiste = false;
             });
         });
     }

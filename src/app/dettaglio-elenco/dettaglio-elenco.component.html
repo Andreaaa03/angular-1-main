@@ -1,15 +1,78 @@
-<h1>Dettaglio</h1>
-<div class="row">
-    <div class="col col-12">
-        <button (click)="tornaIndietro()">Torna indietro</button>
-    </div>
-    <div class="col col-4">
-        <img class="img-fluid" [src]="drink.strDrinkThumb" alt="">
-    </div>
-    <div class="col col-12 d-flex" *ngFor="let obj of personal">
-        <div class="w-25">
-            <p>{{obj.ingrediente}}</p>
-            <p>{{obj.misura}}</p>
+<div class="conatiner w-100" id="container-dettaglio">
+    <div class="row w-100 justify-content-center my-4">
+        <div class="col col-6 d-flex justify-content-center">
+            <h1 class="text-center text-white">{{drink.strDrink}}</h1>
         </div>
+    </div>
+    <div class="row w-100 justify-content-center my-4">
+        <div class="col col-6 d-flex justify-content-around">
+            <button class="btn btn-primary" (click)="tornaIndietro()">Torna indietro</button>
+            <button class="btn btn-primary" routerLink="/home">Torna alla Home</button>
+        </div>
+    </div>
+    <div class="row w-100">
+        <div class="col col-4">
+            <figure>
+                <img class="img-fluid px-5" [src]="drink.strDrinkThumb" alt="">
+            </figure>
+        </div>
+        <div class="col col-4">
+            <div class="col col-12 d-flex flex-wrap h-50">
+                <div class="w-20 h-50 m-2 p-2 border border-1 d-flex flex-wrap justify-content-center align-items-center" *ngFor="let obj of personal">
+                    <img class="img-fluid text-white" width="100" height="100"
+                    src="{{obj.img_url}}" alt="non disponibile, {{obj.img_url}}">
+                    <p class="w-100 pt-3 text-center text-white">{{obj.ingrediente}}</p>
+                    <p class="w-100 text-center text-white fw-bold">{{obj.misura}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col col-4">
+            <h2 class="mt-4 text-white">Ricetta</h2>
+            <ul class="nav nav-tabs">
+                <li class="nav-item bg-black">
+                    <a class="nav-link text-white" [ngClass]="{'active_red': selectedLang === selectLanguage.en}" (click)="selectLanguageFunction(selectLanguage.en)">English</a>
+                </li>
+                <li class="nav-item bg-black" *ngIf="drink.strInstructionsES !== null">
+                    <a class="nav-link text-white" [ngClass]="{'active_red': selectedLang === selectLanguage.es}" (click)="selectLanguageFunction(selectLanguage.es)">Spanish</a>
+                </li>
+                <li class="nav-item bg-black" *ngIf="drink.strInstructionsDE !== null">
+                    <a class="nav-link text-white" [ngClass]="{'active_red': selectedLang === selectLanguage.de}" (click)="selectLanguageFunction(selectLanguage.de)">Deutch</a>
+                </li>
+                <li class="nav-item bg-black" *ngIf="drink.strInstructionsFR !== null">
+                    <a class="nav-link text-white" [ngClass]="{'active_red': selectedLang === selectLanguage.fr}" (click)="selectLanguageFunction(selectLanguage.fr)">France</a>
+                </li>
+                <li class="nav-item bg-black" *ngIf="drink.strInstructionsIT !== null">
+                    <a class="nav-link text-white" [ngClass]="{'active_red': selectedLang === selectLanguage.it}" (click)="selectLanguageFunction(selectLanguage.it)">Italiano</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" [ngClass]="{'active': selectedLang === selectLanguage.en}">
+                    <div class="p-4">
+                        <p class="text-white">{{drink.strInstructions}}</p>
+                    </div>
+                </div>
+                <div class="tab-pane" [ngClass]="{'active': selectedLang === selectLanguage.es}" *ngIf="drink.strInstructionsES !== null">
+                    <div class="p-4">
+                        <p class="text-white">{{drink.strInstructionsES}}</p>
+                    </div>
+                </div>
+                <div class="tab-pane" [ngClass]="{'active': selectedLang === selectLanguage.de}" *ngIf="drink.strInstructionsDE !== null">
+                    <div class="p-4">
+                        <p class="text-white">{{drink.strInstructionsDE}}</p>
+                    </div>
+                </div>
+                <div class="tab-pane" [ngClass]="{'active': selectedLang === selectLanguage.fr}" *ngIf="drink.strInstructionsFR !== null">
+                    <div class="p-4">
+                        <p class="text-white">{{drink.strInstructionsFR}}</p>
+                    </div>
+                </div>
+                <div class="tab-pane" [ngClass]="{'active': selectedLang === selectLanguage.it}" *ngIf="drink.strInstructionsIT !== null">
+                    <div class="p-4">
+                        <p class="text-white">{{drink.strInstructionsIT}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

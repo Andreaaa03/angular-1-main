@@ -93,9 +93,26 @@ type allMeasure = {
     strImageSource: string | null;
 };
 
-type typePersonal = 
-    {
-        ingrediente: allIngredient;
-        misura: allMeasure;
-    }[]
-;
+type allIngr_url = {
+    strIngr_url1: string | null;
+    strIngr_url2: string | null;
+    strIngr_url3: string | null;
+    strIngr_url4: string | null;
+    strIngr_url5: string | null;
+    strIngr_url6: string | null;
+    strIngr_url7: string | null;
+    strIngr_url8: string | null;
+    strIngr_url9: string | null;
+    strIngr_url10: string | null;
+    strIngr_url11: string | null;
+    strIngr_url12: string | null;
+    strIngr_url13: string | null;
+    strIngr_url14: string | null;
+    strIngr_url15: string | null;
+};
+
+type typePersonal = {
+    ingrediente: string | null;
+    misura: string | null;
+    img_url: string | null;
+}[];

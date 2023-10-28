@@ -1,24 +1,38 @@
-header{
-    height: calc(20vh + 56px);
-    z-index: 5;
-    padding-top: 56px;
-}
-header h1{
-    margin: .5rem;
+body{
+    background-color: #230312;
 }
 
+#header{
+    height: calc(165px);
+    z-index: 5;
+    padding-top: 56px;
+    margin-bottom: 2rem;
+}
+#header h1{
+    margin: .5rem;
+}
+#header .container-fluid{
+    background-color: #1d000d !important;
+}
 nav{
     width: 100%;
     position: fixed;
-    background-color: rgb(151, 24, 24);
+    background-color:  #1d000d;
     text-align: center;
     line-height: 56px;
     font-size: xx-large;
     color: white;
+    z-index: 1000;
+    display: block;
+    top: 0;
 }
 
 .h-56{
     height: 56px;
+}
+.w-20{
+    min-width: 20%;
+    max-width: 20%;
 }
 
 .corto{
@@ -26,4 +40,16 @@ nav{
 }
 .lungo{
     max-height: 100% !important;
+}
+
+#container-dettaglio{
+    transform: translatey(56px);
+}
+
+.selected{
+    background-color: red !important;
+}
+
+.active_red{
+    background-color: red;
 }

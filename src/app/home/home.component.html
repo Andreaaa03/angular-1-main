@@ -1,8 +1,8 @@
-<header class="container-fluid px-0 ">
+<div id="header" class="container-fluid px-0 ">
     <div class="container-fluid position-fixed" >
-        <div class="row align-items-center bg-white">
+        <div class="row align-items-center">
             <div class="col col-12 d-flex justify-content-center">
-                <h1 class="text-black">All Drinks</h1>
+                <h1 class="text-white">All Drinks</h1>
             </div>
             <div class="col col-12 d-flex justify-content-center mb-3" >
                 <div class="d-flex flex-nowrap" *ngFor="let lettera of letters">
@@ -11,14 +11,14 @@
             </div>
         </div>
     </div>
-</header>
+</div>
 <div class="container corto" id="drinksA">
     <div class="row">
         <div class="col col-12 d-flex flex-wrap">
             <div class="w-25 px-2" *ngFor="let elemento of drinksA" >
                 <div [routerLink]=" ['dettaglio-elenco', elemento.idDrink]">
                     <img class="img-fluid" src="{{elemento.strDrinkThumb}}" alt="">
-                    <p class="w-100 text-center">{{elemento.strDrink}}</p>
+                    <p class="w-100 text-center text-white">{{elemento.strDrink}}</p>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
             <div class="w-25 px-2" *ngFor="let elemento of drinksBZ">
                 <div [routerLink]=" ['dettaglio-elenco', elemento.idDrink]">
                     <img class="img-fluid" src="{{elemento.strDrinkThumb}}" alt="">
-                    <p class="w-100 text-center">{{elemento.strDrink}}</p>
+                    <p class="w-100 text-center text-white">{{elemento.strDrink}}</p>
                 </div>
             </div>
         </div>
