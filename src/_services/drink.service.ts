@@ -13,4 +13,11 @@ export class DrinkService {
     getDettaglioDrink(id: string) {
         return this.apiService.searchById(id);
     }
+    getRicercaDrink(name: string) {
+        return this.apiService.searchByName(name);
+    }
+    
+    getRicercaIngrediente(name: string) {
+        return this.apiService.searchByIngredienti(name);
+    }
 }

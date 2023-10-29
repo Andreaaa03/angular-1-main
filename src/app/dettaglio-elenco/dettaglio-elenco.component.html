@@ -1,15 +1,19 @@
-<div class="conatiner w-100" id="container-dettaglio">
-    <div class="row w-100 justify-content-center my-4">
-        <div class="col col-6 d-flex justify-content-center">
-            <h1 class="text-center text-white">{{drink.strDrink}}</h1>
+<div id="header" class="container-fluid px-0">
+    <div class="container-fluid position-fixed border-bottom border-1">
+        <div class="row align-items-center">
+            <div class="col col-12 d-flex justify-content-around">
+
+                <h1 class="text-center text-white">{{drink.strDrink}} - {{drink.strAlcoholic}}</h1>
+
+                <div class="d-flex">
+                    <div class="d-flex align-items-center mx-2"><button class="btn btn-primary" (click)="tornaIndietro()">Torna indietro</button></div>
+                    <div class="d-flex align-items-center mx-2"><button class="btn btn-primary" routerLink="/home">Torna alla Home</button></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row w-100 justify-content-center my-4">
-        <div class="col col-6 d-flex justify-content-around">
-            <button class="btn btn-primary" (click)="tornaIndietro()">Torna indietro</button>
-            <button class="btn btn-primary" routerLink="/home">Torna alla Home</button>
-        </div>
-    </div>
+</div>
+<div class="container pt-5">
     <div class="row w-100">
         <div class="col col-4">
             <figure>
@@ -18,22 +22,21 @@
         </div>
         <div class="col col-4">
             <div class="col col-12 d-flex flex-wrap h-50">
-                <div class="w-20 h-50 m-2 p-2 border border-1 d-flex flex-wrap justify-content-center align-items-center" *ngFor="let obj of personal">
-                    <img class="img-fluid text-white" width="100" height="100"
-                    src="{{obj.img_url}}" alt="non disponibile, {{obj.img_url}}">
-                    <p class="w-100 pt-3 text-center text-white">{{obj.ingrediente}}</p>
-                    <p class="w-100 text-center text-white fw-bold">{{obj.misura}}</p>
+                <div class="w-25 h-100 m-2 mt-0 mb-3 p-2 border border-1 d-flex flex-wrap justify-content-center align-items-center" *ngFor="let obj of personal">
+                    <img class="img-fluid text-white" width="100" height="100" src="{{obj.img_url}}" alt="non disponibile, {{obj.img_url}}">
+                    <p class="w-100 pt-1 text-center text-white m-0">{{obj.ingrediente}}</p>
+                    <p class="w-100 text-center text-white fw-bold m-0">{{obj.misura}}</p>
                 </div>
             </div>
         </div>
         <div class="col col-4">
-            <h2 class="mt-4 text-white">Ricetta</h2>
+            <h2 class="text-white">Ricetta</h2>
             <ul class="nav nav-tabs">
                 <li class="nav-item bg-black">
                     <a class="nav-link text-white" [ngClass]="{'active_red': selectedLang === selectLanguage.en}" (click)="selectLanguageFunction(selectLanguage.en)">English</a>
                 </li>
                 <li class="nav-item bg-black" *ngIf="drink.strInstructionsES !== null">
-                    <a class="nav-link text-white" [ngClass]="{'active_red': selectedLang === selectLanguage.es}" (click)="selectLanguageFunction(selectLanguage.es)">Spanish</a>
+                    <a class="nav-link text-white" [ngClass]="{'active_red': selectedLang === selectLanguage.es}" (click)="selectLanguageFunction(selectLanguage.es)">Español</a>
                 </li>
                 <li class="nav-item bg-black" *ngIf="drink.strInstructionsDE !== null">
                     <a class="nav-link text-white" [ngClass]="{'active_red': selectedLang === selectLanguage.de}" (click)="selectLanguageFunction(selectLanguage.de)">Deutch</a>

@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 })
 export class ApiService {
     baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/";
-    
+
     constructor(private http: HttpClient) {}
 
     /***
@@ -20,6 +20,11 @@ export class ApiService {
         return this.http.get<allDrinks>(this.baseUrl + "lookup.php?i=" + id);
     }
 
-    
-    
+    searchByName(name: string) {
+        return this.http.get<allDrinks>(this.baseUrl + "search.php?s=" + name);
+    }
+
+    searchByIngredienti(name: string) {
+        return this.http.get<allDrinks>(this.baseUrl + "filter.php?i=" + name);
+    }
 }

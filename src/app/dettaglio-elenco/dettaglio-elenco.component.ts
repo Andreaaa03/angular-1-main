@@ -132,7 +132,7 @@ export class DettaglioElenco implements OnInit {
                         if (ingrediente) {
                             this.ingredients.push(ingrediente);
 
-                            this.ingr_img_url = baseUrlIngredient + ingrediente.toLowerCase().replace(/ /g, "-") + "-Small.png";
+                            this.ingr_img_url = baseUrlIngredient + ingrediente + "-Small.png";
                             const img_url = this.ingr_img_url;
 
                             if (misura) {

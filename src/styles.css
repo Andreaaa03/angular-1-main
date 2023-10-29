@@ -3,15 +3,14 @@ body{
 }
 
 #header{
-    height: calc(165px);
+    height: 120px;
     z-index: 5;
     padding-top: 56px;
-    margin-bottom: 2rem;
 }
 #header h1{
     margin: .5rem;
 }
-#header .container-fluid{
+#header, #header .container-fluid{
     background-color: #1d000d !important;
 }
 nav{
@@ -31,8 +30,8 @@ nav{
     height: 56px;
 }
 .w-20{
-    min-width: 20%;
-    max-width: 20%;
+    min-width: 19%;
+    max-width: 19%;
 }
 
 .corto{
@@ -42,14 +41,19 @@ nav{
     max-height: 100% !important;
 }
 
-#container-dettaglio{
-    transform: translatey(56px);
-}
-
 .selected{
     background-color: red !important;
 }
 
 .active_red{
     background-color: red;
+}
+
+ul{
+    padding-top: 1rem;
+    background-color: #230312;
+}
+
+#card:hover{
+    cursor: pointer;
 }
