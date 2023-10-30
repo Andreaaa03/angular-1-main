@@ -6,7 +6,7 @@
                     <div class="">
                         <h1 class="text-white">All Drinks</h1>
                     </div>
-                    <div class="d-flex">
+                    <div class=" d-flex">
                         <p class="text-white fs-5 p-0 m-0">Cerca per iniziale</p>
                         <select class="" (change)="LetterChange($event)" style=" width: 100px; height: auto;">
                             <option id="{{lettera}}" class="" *ngFor="let lettera of letters" [value]="lettera">
@@ -14,10 +14,10 @@
                             </option>
                         </select>
                     </div>
-                    <div class="d-flex">
+                    <div class=" d-flex">
                         <p class="text-white fs-5 p-0 m-0">Ricerca per nome:</p> <input type="text" (input)="RicercaDrink()" value="" id="input-ricerca-drink" placeholder="nome del drink">
                     </div>
-                    <div class="d-flex">
+                    <div class=" d-flex">
                         <p class="text-white fs-5 p-0 m-0">Ricerca per ingrediente:</p> <input type="text" (input)="RicercaIngrediente()" value="" id="input-ricerca-ingrediente" placeholder="ingrediente">
                     </div>
                     <!-- <button class="btn btn-primary" (click)="RicercaDrink()">INVIA</button> -->

@@ -34,6 +34,13 @@ nav{
     max-width: 19%;
 }
 
+@media (max-width: 768px){
+    .w-20{
+        margin-top: 1rem;
+        min-width: 100%;
+    }
+}
+
 .corto{
     max-height: 50% !important;
 }

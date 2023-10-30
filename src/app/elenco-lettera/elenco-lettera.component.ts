@@ -10,6 +10,7 @@ export class ElencoLettera implements OnInit {
     drinks: singleDrink[] = [];
     drinkAlchol: singleDrink[] = [];
     drinkAnalchol: singleDrink[] = [];
+    drinkOptional: singleDrink[] = [];
 
 
     constructor(private activatedRoute: ActivatedRoute, private drinkService: DrinkService, private router: Router) {}
@@ -20,6 +21,7 @@ export class ElencoLettera implements OnInit {
         tutti: "tutti",
         alcolici: "alcolici",
         analcolici: "analcolici",
+        opzionali: "opzionali"
     };
     selectedFilter: string = this.selectFilter.tutti;
     selectFilterFunction(scelta: string) {
@@ -32,6 +34,9 @@ export class ElencoLettera implements OnInit {
                 break;
             case this.selectFilter.analcolici:
                 this.selectedFilter = this.selectFilter.analcolici;
+                break;
+            case this.selectFilter.opzionali:
+                this.selectedFilter = this.selectFilter.opzionali;
                 break;
         }
     }
@@ -46,6 +51,7 @@ export class ElencoLettera implements OnInit {
         this.activatedRoute.params.subscribe((params) => {
             this.drinkAnalchol = [];
             this.drinkAlchol = [];
+            this.drinkOptional=[];
             this.lettera_scelta = params["lettera"];
             if (this.lettera_scelta.length > 1) {
                 this.router.navigate(["/errore"]);
@@ -60,6 +66,8 @@ export class ElencoLettera implements OnInit {
                             this.drinkAlchol.push(dati.drinks[i]);
                         } else if (this.drinks[i].strAlcoholic == "Non alcoholic") {
                             this.drinkAnalchol.push(dati.drinks[i]);
+                        } else {
+                            this.drinkOptional.push(dati.drinks[i]);
                         }
                     }
                 } else this.esiste = false;

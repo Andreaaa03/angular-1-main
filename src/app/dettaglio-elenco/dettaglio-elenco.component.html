@@ -15,12 +15,12 @@
 </div>
 <div class="container pt-5">
     <div class="row w-100">
-        <div class="col col-4">
+        <div class="col col-12 col-lg-4">
             <figure>
                 <img class="img-fluid px-5" [src]="drink.strDrinkThumb" alt="">
             </figure>
         </div>
-        <div class="col col-4">
+        <div class="col col-12 col-lg-4">
             <div class="col col-12 d-flex flex-wrap h-50">
                 <div class="w-25 h-100 m-2 mt-0 mb-3 p-2 border border-1 d-flex flex-wrap justify-content-center align-items-center" *ngFor="let obj of personal">
                     <img class="img-fluid text-white" width="100" height="100" src="{{obj.img_url}}" alt="non disponibile, {{obj.img_url}}">
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <div class="col col-4">
+        <div class="col col-12 col-lg-4">
             <h2 class="text-white">Ricetta</h2>
             <ul class="nav nav-tabs">
                 <li class="nav-item bg-black">
